@@ -1,0 +1,52 @@
+/* Les couleurs de l'app (Palette « charte ») et de la maquette de l'accueil. */
+:root {
+  --fond: #FDF4E9;
+  --carte: #FFFFFF;
+  --violet: #8B7CC7;
+  --lavande: #A68BCF;
+  --titre: #3E2A1B;
+  --texte: #786859;
+  --encre: #3B3A5C;
+  --bordure: #F1E3C9;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--fond);
+  color: var(--titre);
+  font-family: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+main { max-width: 760px; margin: 0 auto; padding: 32px 16px 48px; }
+
+a { color: var(--violet); font-weight: 800; }
+
+.logo { display: block; width: min(520px, 100%); margin: 0 auto; }
+
+/* l'accueil */
+.accueil { text-align: center; }
+.mascotte { width: min(320px, 80%); margin: 24px auto 8px; display: block; }
+.slogan { font-size: clamp(26px, 6vw, 34px); font-weight: 800; color: var(--encre); line-height: 1.3; margin: 8px 0 20px; }
+.slogan span { background: linear-gradient(transparent 78%, #D9CCF0 78%, #D9CCF0 94%, transparent 94%); }
+.intro { color: var(--texte); max-width: 560px; margin: 0 auto 28px; font-size: 17px; }
+.points { display: grid; gap: 12px; text-align: left; max-width: 560px; margin: 0 auto 28px; padding: 0; list-style: none; }
+.points li { background: var(--carte); border: 1.5px solid var(--bordure); border-radius: 20px; padding: 14px 18px; }
+.beta { display: inline-block; background: var(--lavande); color: #fff; border-radius: 999px; padding: 10px 22px; font-weight: 800; }
+
+/* la politique de confidentialité */
+.page h1 { font-size: 30px; font-weight: 800; margin: 28px 0 4px; }
+.page .maj { color: var(--texte); margin: 0 0 24px; }
+.page h2 { font-size: 21px; font-weight: 800; margin: 32px 0 8px; }
+.page p, .page li { color: var(--titre); }
+.page section { background: var(--carte); border: 1.5px solid var(--bordure); border-radius: 24px; padding: 4px 20px 16px; margin: 16px 0; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th, td { text-align: left; vertical-align: top; padding: 8px 6px; border-bottom: 1px solid var(--bordure); }
+th { font-weight: 800; }
+.tableau { overflow-x: auto; }
+
+footer { text-align: center; color: var(--texte); font-size: 14px; padding: 24px 16px 40px; }
+footer a { margin: 0 8px; }
