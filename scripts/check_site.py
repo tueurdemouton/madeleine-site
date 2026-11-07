@@ -25,6 +25,7 @@ class Page(HTMLParser):
         self.ids = set()
         self.fragments = []
         self.remote_referrers = False
+        self.robots = set()
         self.resource_seen = False
         self.script_open = False
 
@@ -44,6 +45,8 @@ class Page(HTMLParser):
             check(not self.resource_seen, where, 'CSP placée après une ressource')
             check(self.policy is None, where, 'plusieurs CSP inattendues')
             self.policy = dict((bits[0], bits[1:]) for chunk in a.get('content', '').split(';') if (bits := chunk.split()))
+        if tag == 'meta' and a.get('name', '').lower() == 'robots':
+            self.robots.update(item.strip().lower() for item in a.get('content', '').split(','))
         if tag == 'meta' and a.get('name') == 'referrer':
             self.remote_referrers = a.get('content') == 'no-referrer'
         if tag == 'script':
@@ -84,6 +87,8 @@ class Page(HTMLParser):
 
     def verify(self):
         check(self.headings == 1, self.path.name, 'un seul titre principal requis')
+        check({'noindex', 'nofollow', 'noimageindex'} <= self.robots, self.path.name,
+              'consignes de non-référencement absentes')
         check(self.remote_referrers, self.path.name, 'protection du référent absente')
         check(self.policy is not None, self.path.name, 'CSP absente')
         for directive in ['default-src', 'connect-src', 'object-src', 'base-uri', 'form-action', 'frame-src']:
@@ -110,4 +115,4 @@ check((ROOT / 'fonts/OFL.txt').exists(), 'police', 'licence absente')
 if ERRORS:
     print('\n'.join(ERRORS), file=sys.stderr)
     sys.exit(1)
-print('OK : CSP, ressources locales, liens, ancres et structure des pages.')
+print('OK : non-référencement, CSP, ressources locales, liens, ancres et structure des pages.')

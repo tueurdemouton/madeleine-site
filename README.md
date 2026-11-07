@@ -4,6 +4,24 @@ Site statique publié par GitHub Pages : https://madeleine-de-gout.com.
 La page à partager dans WhatsApp ou un message est toujours
 https://madeleine-de-gout.com/telecharger.html.
 
+## Non-référencement souhaité
+
+Le site doit rester accessible par son lien sans être référencé par les moteurs
+de recherche. Toutes les pages HTML déclarent `noindex, nofollow, noimageindex`,
+et le contrôle automatique vérifie leur présence. Les aperçus de partage WhatsApp
+restent déclarés par les balises Open Graph.
+
+Ne pas bloquer les pages dans `robots.txt` : les moteurs doivent pouvoir lire la
+consigne `noindex`. Si une page a déjà été indexée, sa disparition des résultats
+attendra sa prochaine exploration ; une suppression accélérée demande un accès à
+Search Console. Les robots qui ignorent ces consignes ne sont pas bloqués et le
+site reste public pour toute personne ayant le lien. Les fichiers non HTML, comme
+l'APK, nécessiteraient un véritable en-tête `X-Robots-Tag` pour déclarer eux-mêmes
+`noindex` ; GitHub Pages ne permet pas de le définir depuis ces fichiers. Le dépôt
+GitHub public n'est pas rendu privé par ces consignes.
+
+Référence : https://developers.google.com/search/docs/crawling-indexing/block-indexing
+
 ## Installation de la bêta
 
 - Android : le fichier `madeleine-de-gout.apk` présent dans ce dépôt.
