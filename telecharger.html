@@ -2,56 +2,51 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; script-src-attr 'none'; style-src 'self'; style-src-attr 'none'; font-src 'self'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="no-referrer">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Télécharger Madeleine de Goût — bêta</title>
-  <meta name="description" content="Installer la bêta de Madeleine de Goût sur Android.">
+  <meta name="theme-color" content="#fdf4e9">
+  <title>Tester Madeleine de Goût — Android et iPhone</title>
+  <meta name="description" content="Installez la bêta de Madeleine de Goût sur Android ou rejoignez les tests sur iPhone avec TestFlight. Les étapes pour commencer sont ici.">
   <meta name="robots" content="noindex">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+  <link rel="canonical" href="https://madeleine-de-gout.com/telecharger.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="Essayez Madeleine de Goût">
+  <meta property="og:description" content="Des menus pour toute la famille, un frigo mieux utilisé et une seule liste de courses. Rejoignez la bêta sur Android ou iPhone.">
+  <meta property="og:url" content="https://madeleine-de-gout.com/telecharger.html">
+  <meta property="og:image" content="https://madeleine-de-gout.com/images/logo.webp">
+  <meta property="og:image:alt" content="Madeleine de Goût">
   <link rel="stylesheet" href="style.css">
+  <script src="download.js" defer></script>
 </head>
 <body>
-  <main class="page">
-    <a href="index.html"><img class="logo" src="images/logo.webp" alt="Madeleine de Goût"></a>
-    <h1>Installer la bêta</h1>
-    <p class="maj">Version 1.0 (bêta) — novembre 2026</p>
-
-    <section>
-      <h2>Sur Android</h2>
-      <p style="text-align:center; margin: 20px 0;">
-        <a class="beta" href="madeleine-de-gout.apk" download style="text-decoration:none;">Télécharger l'application (43 Mo)</a>
-      </p>
-      <ol>
-        <li>Touche le bouton ci-dessus depuis ton téléphone Android. Le navigateur peut prévenir
-            que ce type de fichier « peut être dangereux » : c'est le message habituel pour toute
-            application installée hors du Play Store. Touche <strong>Télécharger quand même</strong>.</li>
-        <li>Ouvre le fichier téléchargé (dans la notification, ou dans l'application Fichiers →
-            Téléchargements).</li>
-        <li>La première fois, Android demande d'autoriser ton navigateur à installer des
-            applications : touche <strong>Paramètres</strong>, active
-            <strong>Autoriser cette source</strong>, puis reviens en arrière.</li>
-        <li>Touche <strong>Installer</strong>, puis <strong>Ouvrir</strong>.</li>
-        <li>Dans l'application : <strong>J'ai déjà un compte</strong> → <strong>Continuer avec Google</strong>,
-            ou <strong>Commencer</strong> pour répondre aux questions et créer ton compte à la fin.</li>
-      </ol>
-      <p>Les mises à jour se font de la même façon : télécharge la nouvelle version ici et installe-la
-         par-dessus, tes données sont gardées.</p>
-    </section>
-
-    <section>
-      <h2>Sur iPhone</h2>
-      <p>Bientôt, par TestFlight (l'application de bêta d'Apple) : le lien sera ici.</p>
-    </section>
-
-    <section>
-      <h2>Un souci ?</h2>
-      <p>Écris à <a href="mailto:paul@madeleine-de-gout.com">paul@madeleine-de-gout.com</a>.</p>
-    </section>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+  <header class="site-header"><a class="brand" href="index.html" aria-label="Madeleine de Goût, accueil"><img src="images/logo.webp" alt="Madeleine de Goût" width="738" height="160"></a><a class="text-link" href="index.html">Découvrir Madeleine <span aria-hidden="true">↗</span></a></header>
+  <main id="contenu" class="download-page">
+    <div class="download-intro"><p class="eyebrow">Bienvenue dans la cuisine.</p><h1>Votre semaine commence ici.</h1><p class="lead">La bêta pour Android et iPhone, expliquée en quelques étapes. Merci de participer à l’aventure Madeleine.</p><p id="device-hint" class="device-hint" aria-live="polite">Android ou iPhone : retrouvez les étapes ci-dessous.</p></div>
+    <div class="install-grid">
+      <section id="android" class="install-card" aria-labelledby="android-title">
+        <div class="platform-header"><span class="platform-mark" aria-hidden="true">A</span><div><p class="eyebrow">Bêta · version 1.0.2</p><h2 id="android-title">Sur Android</h2></div></div>
+        <p>Installez directement l’application sur votre téléphone.</p>
+        <a class="button button-wide" href="madeleine-de-gout.apk" download="madeleine-de-gout.apk">Télécharger pour Android <span aria-hidden="true">↓</span></a>
+        <p class="small-note">Fichier APK · environ 44 Mo</p>
+        <ol class="steps"><li><strong>Téléchargez le fichier.</strong> Si le navigateur demande une confirmation, vérifiez que vous êtes sur <span class="domain">madeleine-de-gout.com</span>, puis confirmez le téléchargement.</li><li><strong>Ouvrez le téléchargement.</strong> Retrouvez-le dans la notification ou dans Fichiers → Téléchargements.</li><li><strong>Autorisez l’installation si nécessaire.</strong> Android peut demander d’autoriser votre navigateur à installer cette application. Validez uniquement si vous souhaitez installer la bêta.</li><li><strong>Installez, puis ouvrez Madeleine.</strong> Choisissez « Commencer » pour créer votre compte ou « Se connecter » si vous en avez déjà un.</li></ol>
+        <details><summary>Comment mettre l’application à jour ?</summary><p>Revenez sur cette page et installez la nouvelle version par-dessus l’ancienne, sans désinstaller Madeleine.</p></details>
+      </section>
+      <section id="iphone" class="install-card" aria-labelledby="iphone-title">
+        <div class="platform-header"><span class="platform-mark platform-apple" aria-hidden="true">iOS</span><div><p class="eyebrow">Bêta · avec TestFlight</p><h2 id="iphone-title">Sur iPhone</h2></div></div>
+        <p>Apple utilise TestFlight pour installer les applications en cours de test. L’installation de TestFlight n’est nécessaire qu’une fois.</p>
+        <p class="availability-note"><strong>Validation Apple en cours.</strong> L’installation de Madeleine sera disponible après l’approbation de la bêta.</p>
+        <div class="ios-actions"><a class="button button-secondary button-wide" href="https://apps.apple.com/fr/app/testflight/id899247664" rel="noreferrer noopener">1. Installer TestFlight <span aria-hidden="true">↗</span></a><a class="button button-wide" href="https://testflight.apple.com/join/WRTVBuNv" rel="noreferrer noopener">2. Rejoindre la bêta Madeleine <span aria-hidden="true">↗</span></a></div>
+        <p class="small-note">Vous avez déjà TestFlight ? Passez directement à l’étape 2.</p>
+        <ol class="steps"><li><strong>Installez TestFlight depuis l’App Store.</strong> C’est l’application de test d’Apple.</li><li><strong>Revenez ici et ouvrez le lien de la bêta.</strong> Dans TestFlight, touchez « Accepter », puis « Installer » lorsque la version est disponible.</li><li><strong>Ouvrez Madeleine.</strong> Créez votre propre compte ou connectez-vous. Vous pourrez ensuite ouvrir l’application depuis son icône habituelle.</li></ol>
+        <details><summary>Et les prochaines mises à jour ?</summary><p>TestFlight vous préviendra quand une nouvelle version sera disponible. Vous pouvez activer les mises à jour automatiques dans TestFlight.</p></details>
+      </section>
+    </div>
+    <section class="share-panel" aria-labelledby="share-title"><div><h2 id="share-title">La cuisine, ça se partage.</h2><p>Envoyez ce même lien à vos proches : chacun choisit la version adaptée à son téléphone.</p></div><div class="share-controls"><label class="visually-hidden" for="share-url">Lien à partager</label><input id="share-url" class="share-url" type="url" value="https://madeleine-de-gout.com/telecharger.html" readonly><button id="share-button" class="button button-secondary" type="button" hidden>Copier le lien</button><p id="share-status" class="small-note" role="status"></p></div></section>
+    <section class="help-panel" aria-labelledby="help-title"><h2 id="help-title">Un petit coup de main ?</h2><details><summary>Le lien s’ouvre mal depuis WhatsApp</summary><p>Utilisez le menu de la page pour ouvrir le lien dans Safari sur iPhone, ou dans votre navigateur habituel sur Android. Vous pouvez aussi copier le lien affiché ci-dessus et le coller dans ce navigateur.</p></details><details><summary>Je n’arrive pas à rejoindre la bêta sur iPhone</summary><p>Vérifiez que TestFlight est installé. Si Apple indique que le groupe n’a pas encore de version approuvée, la validation est toujours en cours : réessayez après son approbation. L’app nécessite iOS 18.2 ou une version ultérieure.</p></details><p>Pour signaler un souci, écrivez à <a href="mailto:paul@madeleine-de-gout.com">paul@madeleine-de-gout.com</a>. Indiquez votre téléphone et ce qui se passe à l’écran, sans envoyer de mot de passe.</p></section>
   </main>
-  <footer>
-    <a href="index.html">Accueil</a>
-    <a href="confidentialite.html">Politique de confidentialité</a>
-  </footer>
+  <footer class="site-footer"><a href="index.html">Accueil</a><a href="confidentialite.html">Confidentialité</a><span>© 2026 Madeleine de Goût</span></footer>
 </body>
 </html>

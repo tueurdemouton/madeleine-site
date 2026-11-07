@@ -1,0 +1,10 @@
+.DS_Store
+__pycache__/
+.env
+.env.*
+*.p8
+*.pem
+*.key
+*.p12
+*.pfx
+preview/

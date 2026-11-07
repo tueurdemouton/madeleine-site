@@ -2,34 +2,53 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="no-referrer">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fdf4e9">
   <title>Madeleine de Goût — Chacun ses goûts, un seul plan</title>
-  <meta name="description" content="Madeleine de Goût prépare les dîners de la semaine pour tout le foyer, en respectant les goûts, les allergies et le budget de chacun, avec une seule liste de courses.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Des menus pour toute la famille, un frigo mieux utilisé et une seule liste de courses. Découvrez la bêta de Madeleine de Goût sur Android et iPhone.">
+  <link rel="canonical" href="https://madeleine-de-gout.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="Madeleine de Goût — Chacun ses goûts, un seul plan">
+  <meta property="og:description" content="Moins de « qu’est-ce qu’on mange ? », plus de plaisir à table. Découvrez la bêta sur Android et iPhone.">
+  <meta property="og:url" content="https://madeleine-de-gout.com/">
+  <meta property="og:image" content="https://madeleine-de-gout.com/images/logo.webp">
+  <meta property="og:image:alt" content="Madeleine de Goût">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="accueil">
-    <img class="logo" src="images/logo.webp" alt="Madeleine de Goût">
-    <img class="mascotte" src="images/mascotte.webp" alt="La mascotte de Madeleine de Goût, qui cuisine">
-    <p class="slogan">Chacun ses goûts,<br><span>un seul plan.</span></p>
-    <p class="intro">
-      Madeleine de Goût prépare en un geste les dîners de la semaine pour tout le foyer,
-      en respectant le temps de cuisine, le budget, les allergies et les goûts de chacun.
-    </p>
-    <ul class="points">
-      <li>Une semaine de dîners générée pour toute la famille, que l'on ajuste à son envie.</li>
-      <li>Une seule liste de courses, rangée par rayon, qui utilise d'abord ce qu'il y a dans le frigo.</li>
-      <li>Les allergies et les régimes de chacun toujours respectés ; les restes deviennent des soirs « restes ».</li>
-    </ul>
-    <p><a class="beta" href="telecharger.html" style="text-decoration:none;">Installer la bêta</a></p>
-    <p class="intro">Une question ? Écris-nous à <a href="mailto:paul@madeleine-de-gout.com">paul@madeleine-de-gout.com</a>.</p>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Madeleine de Goût, accueil"><img src="images/logo.webp" alt="Madeleine de Goût" width="738" height="160"></a>
+    <a class="button button-small" href="telecharger.html">Essayer la bêta <span aria-hidden="true">↗</span></a>
+  </header>
+  <main id="contenu" class="home">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Le quotidien a meilleur goût.</p>
+        <h1 id="hero-title">Chacun ses goûts,<br><span>un seul plan.</span></h1>
+        <p class="lead">Des dîners pour toute la famille, un frigo mieux utilisé et une seule liste de courses. Madeleine vous aide à préparer la semaine, en respectant les goûts de chacun.</p>
+        <a class="button" href="telecharger.html">Tester Madeleine <span aria-hidden="true">→</span></a>
+        <p class="small-note">Bêta sur Android · iPhone via TestFlight</p>
+      </div>
+      <div class="hero-visual">
+        <div class="visual-note"><span aria-hidden="true">✦</span> À chacun sa petite Madeleine.</div>
+        <img class="hero-mascot" src="images/mascotte.webp" alt="La mascotte Madeleine prépare un plat" width="600" height="640" fetchpriority="high">
+        <p class="visual-caption">On s’occupe du plan.<br><strong>Vous gardez le plaisir de cuisiner.</strong></p>
+      </div>
+    </section>
+    <section class="benefits" aria-labelledby="benefits-title">
+      <div class="section-heading"><p class="eyebrow">Un peu d’organisation, beaucoup de plaisir.</p><h2 id="benefits-title">La semaine se prépare ensemble.</h2></div>
+      <div class="benefit-grid">
+        <article class="benefit"><span class="number" aria-hidden="true">01</span><h3>Des menus à votre goût</h3><p>Les envies, le budget et le temps de cuisine de votre foyer réunis dans une semaine de repas que vous pouvez ajuster.</p></article>
+        <article class="benefit"><span class="number" aria-hidden="true">02</span><h3>Un frigo mieux utilisé</h3><p>Partez de ce que vous avez déjà et faites une place aux restes dans vos prochains repas.</p></article>
+        <article class="benefit"><span class="number" aria-hidden="true">03</span><h3>Des courses plus simples</h3><p>Retrouvez les ingrédients à acheter dans une seule liste, organisée par rayon.</p></article>
+      </div>
+    </section>
+    <section class="beta-banner" aria-labelledby="beta-title"><div><p class="eyebrow">C’est le début de l’aventure.</p><h2 id="beta-title">Et si vous nous aidiez à cuisiner la suite ?</h2><p>Essayez la bêta et racontez-nous ce qui vous plaît, ce qui manque et ce qui pourrait être plus simple.</p></div><a class="button" href="telecharger.html">Rejoindre les testeurs <span aria-hidden="true">→</span></a></section>
   </main>
-  <footer>
-    <a href="confidentialite.html">Politique de confidentialité</a>
-    <span>© 2026 Madeleine de Goût</span>
-  </footer>
+  <footer class="site-footer"><a href="mailto:paul@madeleine-de-gout.com">Une question ? Écrivez-nous</a><a href="confidentialite.html">Confidentialité</a><span>© 2026 Madeleine de Goût</span></footer>
 </body>
 </html>
