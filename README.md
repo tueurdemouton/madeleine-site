@@ -76,7 +76,6 @@ Références :
 
 ```sh
 python3 scripts/check_site.py
-python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
 Pour tester les ressources dans un navigateur local, utiliser un serveur HTTPS
@@ -88,3 +87,20 @@ sans JavaScript, ainsi que l'accès au fichier APK et les liens TestFlight.
 Ce dépôt est **public**. Ne jamais y placer de clé Apple, clé privée, `.env`,
 identifiant de démonstration, mot de passe, capture de compte ou export de données.
 La branche de travail pour cette évolution est `codex/site-testflight-security`.
+
+## Vérifications de cette version
+
+WebKit a vérifié l'accueil en 375 px et 1440 px, et la page de téléchargement en
+360 px (Android), 390 px (iPhone), 1280 px (ordinateur) et 375 px sans JavaScript.
+Aucun débordement horizontal, les images et la police sont chargées, les deux
+parcours restent disponibles et le lien copié est fixe. Le parcours détecté est
+placé en premier dans le DOM, ce qui garde le même ordre au clavier.
+
+Les tentatives locales de script intégré, de script externe, de connexion réseau
+et d'envoi de formulaire ont été bloquées par la CSP dans WebKit. Des paramètres
+URL contenant une destination externe ou du HTML n'ont pas modifié les liens.
+Le fichier APK, les images et le domaine CNAME n'ont pas été modifiés.
+
+La version du lien CSS évite de conserver les anciens styles dans le cache après
+cette publication. Faire évoluer ce paramètre lors d'une prochaine modification
+visuelle nécessitant un nouveau chargement immédiat des styles.
