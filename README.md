@@ -136,3 +136,16 @@ y compris lorsqu'elle change pendant la consultation. Un déplacement du focus
 clavier vers une zone animée termine son animation. Sans JavaScript ou sans les
 API d'animation, les contenus restent affichés normalement. Les petits effets
 à l'ouverture des aides sont déclenchés uniquement par l'utilisateur.
+
+## Logos des plateformes
+
+Les pictogrammes Android et Apple sont issus de Font Awesome Free 7.3.1,
+par Fonticons, sous licence CC BY 4.0. Les tracés sont conservés ; seule leur
+couleur est fixée dans le SVG pour un affichage identique dans les navigateurs.
+Les fichiers sont servis localement, sans bibliothèque ni chargement externe.
+La licence est conservée dans `images/PLATFORM-ICONS-LICENSE.txt` et les mentions
+d'attribution d'origine sont présentes dans les SVG.
+
+Sources :
+- https://github.com/FortAwesome/Font-Awesome/blob/7.3.1/svgs/brands/android.svg
+- https://github.com/FortAwesome/Font-Awesome/blob/7.3.1/svgs/brands/apple.svg

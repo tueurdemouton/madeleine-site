@@ -226,3 +226,7 @@ footer:not(.site-footer) a { margin: 0 8px; }
   .site-header .button-small { white-space: nowrap; flex-shrink: 0; }
   .site-header .button-small span[aria-hidden] { display: none; }
 }
+
+/* Logos vectoriels servis localement ; les titres portent le nom des plateformes. */
+.platform-mark img { display: block; width: 36px; height: 32px; object-fit: contain; }
+.platform-apple img { width: 28px; height: 34px; }
