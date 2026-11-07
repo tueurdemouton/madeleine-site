@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; script-src-attr 'none'; style-src 'self'; style-src-attr 'none'; font-src 'self'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="no-referrer">
   <meta name="robots" content="noindex, nofollow, noimageindex">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,7 +17,8 @@
   <meta property="og:url" content="https://madeleine-de-gout.com/">
   <meta property="og:image" content="https://madeleine-de-gout.com/images/logo.webp">
   <meta property="og:image:alt" content="Madeleine de Goût">
-  <link rel="stylesheet" href="style.css?v=20261107">
+  <link rel="stylesheet" href="style.css?v=20261107-animations">
+  <script src="effects.js?v=20261107" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#contenu">Aller au contenu</a>
@@ -33,22 +34,25 @@
         <p class="lead">Des dîners pour toute la famille, un frigo mieux utilisé et une seule liste de courses. Madeleine vous aide à préparer la semaine, en respectant les goûts de chacun.</p>
         <a class="button" href="telecharger.html">Tester Madeleine <span aria-hidden="true">→</span></a>
         <p class="small-note">Bêta sur Android · iPhone via TestFlight</p>
+        <ol class="hero-flow" aria-label="Du choix des repas à la liste de courses"><li>Vos goûts</li><li>Vos menus</li><li>Vos courses</li></ol>
       </div>
-      <div class="hero-visual">
+      <div class="hero-visual" data-reveal>
+        <span class="hero-sparkle sparkle-one" aria-hidden="true">✦</span>
+        <span class="hero-sparkle sparkle-two" aria-hidden="true">✧</span>
         <div class="visual-note"><span aria-hidden="true">✦</span> À chacun sa petite Madeleine.</div>
         <img class="hero-mascot" src="images/mascotte.webp" alt="La mascotte Madeleine prépare un plat" width="600" height="640" fetchpriority="high">
         <p class="visual-caption">On s’occupe du plan.<br><strong>Vous gardez le plaisir de cuisiner.</strong></p>
       </div>
     </section>
     <section class="benefits" aria-labelledby="benefits-title">
-      <div class="section-heading"><p class="eyebrow">Un peu d’organisation, beaucoup de plaisir.</p><h2 id="benefits-title">La semaine se prépare ensemble.</h2></div>
+      <div class="section-heading" data-reveal><p class="eyebrow">Un peu d’organisation, beaucoup de plaisir.</p><h2 id="benefits-title">La semaine se prépare ensemble.</h2></div>
       <div class="benefit-grid">
-        <article class="benefit"><span class="number" aria-hidden="true">01</span><h3>Des menus à votre goût</h3><p>Les envies, le budget et le temps de cuisine de votre foyer réunis dans une semaine de repas que vous pouvez ajuster.</p></article>
-        <article class="benefit"><span class="number" aria-hidden="true">02</span><h3>Un frigo mieux utilisé</h3><p>Partez de ce que vous avez déjà et faites une place aux restes dans vos prochains repas.</p></article>
-        <article class="benefit"><span class="number" aria-hidden="true">03</span><h3>Des courses plus simples</h3><p>Retrouvez les ingrédients à acheter dans une seule liste, organisée par rayon.</p></article>
+        <article class="benefit" data-reveal><span class="number" aria-hidden="true">01</span><h3>Des menus à votre goût</h3><p>Les envies, le budget et le temps de cuisine de votre foyer réunis dans une semaine de repas que vous pouvez ajuster.</p></article>
+        <article class="benefit" data-reveal><span class="number" aria-hidden="true">02</span><h3>Un frigo mieux utilisé</h3><p>Partez de ce que vous avez déjà et faites une place aux restes dans vos prochains repas.</p></article>
+        <article class="benefit" data-reveal><span class="number" aria-hidden="true">03</span><h3>Des courses plus simples</h3><p>Retrouvez les ingrédients à acheter dans une seule liste, organisée par rayon.</p></article>
       </div>
     </section>
-    <section class="beta-banner" aria-labelledby="beta-title"><div><p class="eyebrow">C’est le début de l’aventure.</p><h2 id="beta-title">Et si vous nous aidiez à cuisiner la suite ?</h2><p>Essayez la bêta et racontez-nous ce qui vous plaît, ce qui manque et ce qui pourrait être plus simple.</p></div><a class="button" href="telecharger.html">Rejoindre les testeurs <span aria-hidden="true">→</span></a></section>
+    <section class="beta-banner" aria-labelledby="beta-title" data-reveal><div><p class="eyebrow">C’est le début de l’aventure.</p><h2 id="beta-title">Et si vous nous aidiez à cuisiner la suite ?</h2><p>Essayez la bêta et racontez-nous ce qui vous plaît, ce qui manque et ce qui pourrait être plus simple.</p></div><a class="button" href="telecharger.html">Rejoindre les testeurs <span aria-hidden="true">→</span></a></section>
   </main>
   <footer class="site-footer"><a href="mailto:paul@madeleine-de-gout.com">Une question ? Écrivez-nous</a><a href="confidentialite.html">Confidentialité</a><span>© 2026 Madeleine de Goût</span></footer>
 </body>

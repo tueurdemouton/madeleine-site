@@ -44,9 +44,10 @@ clé App Store Connect ne doit figurer dans ce dépôt public. Mettre les étape
 - CSP restrictive sur chaque page, placée avant toute ressource : aucune connexion
   réseau depuis le code des pages, aucun formulaire, plugin, base URL ou contenu
   embarqué ; ressources visuelles, styles et police servis localement.
-- Aucun JavaScript sur l'accueil et la politique de confidentialité. La page de
-  téléchargement utilise uniquement `download.js`, sans code intégré au HTML,
-  `eval`, insertion HTML ou destination calculée depuis les paramètres de l'URL.
+- Aucun JavaScript sur la politique de confidentialité. L'accueil utilise
+  `effects.js` ; le téléchargement utilise `download.js` et `effects.js`, sans
+  code intégré au HTML, `eval`, insertion HTML ou destination calculée depuis
+  les paramètres de l'URL.
 - Aucun framework, paquet npm, outil de mesure ou script tiers chargé chez les
   visiteurs. Nunito est hébergée localement, avec sa licence OFL dans `fonts/`.
 - Politique `no-referrer` sur toutes les pages. Les liens externes d'installation
@@ -122,3 +123,16 @@ Le fichier APK, les images et le domaine CNAME n'ont pas été modifiés.
 La version du lien CSS évite de conserver les anciens styles dans le cache après
 cette publication. Faire évoluer ce paramètre lors d'une prochaine modification
 visuelle nécessitant un nouveau chargement immédiat des styles.
+
+## Animations
+
+Les effets sont locaux, sans bibliothèque ni ressource externe. Les décorations
+CSS du premier écran durent au maximum 4,8 secondes, puis s'arrêtent. Les cartes
+apparaissent une seule fois au défilement avec IntersectionObserver et Web
+Animations ; les boutons d'installation restent disponibles immédiatement.
+
+La préférence `prefers-reduced-motion` désactive les animations CSS et JavaScript,
+y compris lorsqu'elle change pendant la consultation. Un déplacement du focus
+clavier vers une zone animée termine son animation. Sans JavaScript ou sans les
+API d'animation, les contenus restent affichés normalement. Les petits effets
+à l'ouverture des aides sont déclenchés uniquement par l'utilisateur.

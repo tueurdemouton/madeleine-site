@@ -28,6 +28,7 @@ class Page(HTMLParser):
         self.robots = set()
         self.resource_seen = False
         self.script_open = False
+        self.scripts = []
 
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
@@ -50,6 +51,7 @@ class Page(HTMLParser):
         if tag == 'meta' and a.get('name') == 'referrer':
             self.remote_referrers = a.get('content') == 'no-referrer'
         if tag == 'script':
+            self.scripts.append(urlsplit(a.get('src', '')).path)
             check(bool(a.get('src')), where, 'script sans fichier source')
             self.script_open = True
         if tag in {'script', 'img', 'link'}:
@@ -97,7 +99,10 @@ class Page(HTMLParser):
         for directive in ['style-src', 'font-src', 'img-src']:
             check((self.policy or {}).get(directive) == ["'self'"], self.path.name,
                   f'{directive} doit rester local')
-        expected = ["'self'"] if self.path.name == 'telecharger.html' else ["'none'"]
+        expected_scripts = {'index.html': ['effects.js'], 'telecharger.html': ['download.js', 'effects.js']}
+        allowed = expected_scripts.get(self.path.name, [])
+        check(self.scripts == allowed, self.path.name, 'liste des scripts locaux inattendue')
+        expected = ["'self'"] if allowed else ["'none'"]
         check((self.policy or {}).get('script-src') == expected, self.path.name, 'scripts trop permissifs')
         for where, fragment in self.fragments:
             check(fragment in self.ids, where, 'ancre absente : ' + fragment)
