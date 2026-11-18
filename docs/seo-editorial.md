@@ -57,6 +57,8 @@ confirmer que le besoin traité est distinct. L’accueil conserve l’intention
 
 Le premier guide propose une méthode d’organisation et des plats indicatifs ;
 il ne remplace pas la future page de menu avec recettes et quantités complètes.
+Sa semaine d’exemple utilise sept recettes et leurs visuels du catalogue public
+Madeleine. Leur correspondance est documentée dans `images/plats/README.md`.
 
 ## Search Console et suivi
 
