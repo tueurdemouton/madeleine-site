@@ -127,6 +127,13 @@ La branche de travail pour cette évolution est `codex/site-testflight-security`
 
 ## Vérifications de cette version
 
+L'accueil, la rubrique des guides et le premier article utilisent des captures
+réelles de la bêta en français (15 novembre 2026). Elles illustrent la semaine,
+le remplacement d'un plat et la liste de courses. Les WebP en 360 et 720 pixels
+sont servis via `srcset`, avec dimensions réservées, chargement différé hors du
+premier écran et liens d'agrandissement sans JavaScript. Leur provenance est
+documentée dans `images/application/README.md`.
+
 Le 18 novembre 2026, WebKit a vérifié l'accueil en 320 px, 375 px et 1440 px,
 la rubrique Guides & menus en 375 px et 1440 px, et le premier guide en 320 px
 sans JavaScript, 375 px et 1440 px. Aucun débordement horizontal ; images et police

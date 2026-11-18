@@ -40,6 +40,10 @@ confirmer que le besoin traité est distinct. L’accueil conserve l’intention
 4. Donner une réponse complète avant de présenter l’application. Proposer un menu,
    une liste, un exemple ou un planning adapté au sujet. Identifier clairement les
    exemples fictifs et les préparations indicatives ; ne pas annoncer de test non effectué.
+   Illustrer les passages sur Madeleine avec des captures réelles de l’application,
+   en français, choisies selon le sujet. Ajouter légende, texte alternatif et lien
+   d’agrandissement. Les captures existantes et leur provenance sont documentées dans
+   `images/application/README.md` ; ne pas présenter une maquette comme le produit.
 5. Pour une page de menus : détailler les recettes, les portions, les quantités et
    les ingrédients du placard. Pour un budget : dater et sourcer les prix, en
    distinguant coût des portions et montant du panier. Mesurer les temps annoncés.
