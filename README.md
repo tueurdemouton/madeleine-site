@@ -4,23 +4,41 @@ Site statique publié par GitHub Pages : https://madeleine-de-gout.com.
 La page à partager dans WhatsApp ou un message est toujours
 https://madeleine-de-gout.com/telecharger.html.
 
-## Non-référencement souhaité
+## Référencement
 
-Le site doit rester accessible par son lien sans être référencé par les moteurs
-de recherche. Toutes les pages HTML déclarent `noindex, nofollow, noimageindex`,
-et le contrôle automatique vérifie leur présence. Les aperçus de partage WhatsApp
-restent déclarés par les balises Open Graph.
+Le site autorise son indexation par les moteurs de recherche (choix du 2026-11-15,
+complété le 2026-11-18 par les premiers guides SEO). Aucune page ne
+déclare `noindex`, `nofollow` ni `noimageindex`, et le contrôle automatique
+vérifie leur absence. Les aperçus de partage WhatsApp restent déclarés par les
+balises Open Graph.
 
-Ne pas bloquer les pages dans `robots.txt` : les moteurs doivent pouvoir lire la
-consigne `noindex`. Si une page a déjà été indexée, sa disparition des résultats
-attendra sa prochaine exploration ; une suppression accélérée demande un accès à
-Search Console. Les robots qui ignorent ces consignes ne sont pas bloqués et le
-site reste public pour toute personne ayant le lien. Les fichiers non HTML, comme
-l'APK, nécessiteraient un véritable en-tête `X-Robots-Tag` pour déclarer eux-mêmes
-`noindex` ; GitHub Pages ne permet pas de le définir depuis ces fichiers. Le dépôt
-GitHub public n'est pas rendu privé par ces consignes.
+Le logo affiché par Google est l'icône déclarée par `<link rel="icon">` sur la
+page d'accueil : `favicon.ico` (16, 32, 48) et `images/icon-192.png`, la
+mascotte de l'app. Google la met à jour à son rythme, après avoir exploré de
+nouveau la page d'accueil ; une demande d'exploration dans Search Console ne
+garantit pas sa date de mise à jour.
 
-Référence : https://developers.google.com/search/docs/crawling-indexing/block-indexing
+Référence : https://developers.google.com/search/docs/appearance/favicon-in-search
+
+Le site possède une rubrique `/guides/` et des articles sous `/guides/<sujet>/`.
+Le parcours, le calendrier éditorial et la procédure d'ajout d'une page sont
+documentés dans [docs/seo-editorial.md](docs/seo-editorial.md).
+Les URL publiques sont déclarées dans `sitemap.xml`, lui-même indiqué dans
+`robots.txt`. Régénérer le sitemap après un ajout de page :
+
+```sh
+python3 scripts/build_sitemap.py
+python3 scripts/check_site.py
+```
+
+Le contrôle parcourt aussi les sous-dossiers, vérifie les URL canoniques, les
+ancres entre pages et la cohérence du sitemap. Le guide utilise les microdonnées
+Article et BreadcrumbList, sans script intégré au HTML ni dépendance tierce.
+Les guides et leur sommaire fonctionnent sans JavaScript. Le planning est fourni
+en PDF A4 d'une page, téléchargeable et imprimable. Après une modification des
+sept jours de l'exemple, le régénérer sur macOS avec
+`python3 scripts/build_planning_pdf.py` (Swift/Xcode requis uniquement pour
+la génération, aucune dépendance à charger chez les visiteurs).
 
 ## Installation de la bêta
 
@@ -108,6 +126,15 @@ identifiant de démonstration, mot de passe, capture de compte ou export de donn
 La branche de travail pour cette évolution est `codex/site-testflight-security`.
 
 ## Vérifications de cette version
+
+Le 18 novembre 2026, WebKit a vérifié l'accueil en 320 px, 375 px et 1440 px,
+la rubrique Guides & menus en 375 px et 1440 px, et le premier guide en 320 px
+sans JavaScript, 375 px et 1440 px. Aucun débordement horizontal ; images et police
+chargées, navigation au clavier et liens de sommaire accessibles. Les liens de
+navigation et le bouton principal mesurent au moins 44 px de haut.
+Le téléchargement et la confidentialité ont aussi été contrôlés sur mobile.
+Le PDF téléchargeable est un document A4 d'une page : les sept jours et leur titre
+ont été vérifiés dans le texte du PDF, puis son rendu a été inspecté.
 
 WebKit a vérifié l'accueil en 375 px et 1440 px, et la page de téléchargement en
 360 px (Android), 390 px (iPhone), 1280 px (ordinateur) et 375 px sans JavaScript.

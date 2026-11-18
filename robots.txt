@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://madeleine-de-gout.com/sitemap.xml

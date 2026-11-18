@@ -4,15 +4,14 @@
   <meta charset="utf-8">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; script-src-attr 'none'; style-src 'self'; style-src-attr 'none'; font-src 'self'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="no-referrer">
-  <meta name="robots" content="noindex, nofollow, noimageindex">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#fdf4e9">
-  <title>Madeleine de Goût — Chacun ses goûts, un seul plan</title>
+  <title>Menus de la semaine en famille et liste de courses — Madeleine de Goût</title>
   <meta name="description" content="Des menus pour toute la famille, un frigo mieux utilisé et une seule liste de courses. Découvrez la bêta de Madeleine de Goût sur Android et iPhone.">
   <link rel="canonical" href="https://madeleine-de-gout.com/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_FR">
-  <meta property="og:title" content="Madeleine de Goût — Chacun ses goûts, un seul plan">
+  <meta property="og:title" content="Madeleine de Goût — Les menus de la semaine pour votre famille">
   <meta property="og:description" content="Moins de « qu’est-ce qu’on mange ? », plus de plaisir à table. Découvrez la bêta sur Android et iPhone.">
   <meta property="og:url" content="https://madeleine-de-gout.com/">
   <meta property="og:site_name" content="Madeleine de Goût">
@@ -25,22 +24,23 @@
   <link rel="icon" href="favicon.ico" sizes="48x48">
   <link rel="icon" type="image/png" sizes="192x192" href="images/icon-192.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="stylesheet" href="style.css?v=20261107-platforms">
+  <link rel="stylesheet" href="/style.css?v=20261118-guides">
   <script src="effects.js?v=20261107" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#contenu">Aller au contenu</a>
   <header class="site-header">
-    <a class="brand" href="index.html" aria-label="Madeleine de Goût, accueil"><img src="images/logo.webp" alt="Madeleine de Goût" width="738" height="160"></a>
-    <a class="button button-small" href="telecharger.html">Essayer la bêta <span aria-hidden="true">↗</span></a>
+    <a class="brand" href="/" aria-label="Madeleine de Goût, accueil"><img src="/images/logo.webp" alt="Madeleine de Goût" width="738" height="160"></a>
+    <nav class="site-nav" aria-label="Navigation principale"><a href="/" aria-current="page">L’application</a><a href="/guides/">Guides &amp; menus</a></nav>
+    <a class="button button-small header-cta" href="/telecharger.html">Essayer la bêta <span aria-hidden="true">↗</span></a>
   </header>
   <main id="contenu" class="home">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow">Le quotidien a meilleur goût.</p>
-        <h1 id="hero-title">Chacun ses goûts,<br><span>un seul plan.</span></h1>
+        <p class="eyebrow">Chacun ses goûts, un seul plan.</p>
+        <h1 id="hero-title">Vos menus de la semaine,<br><span>à chacun ses goûts.</span></h1>
         <p class="lead">Des dîners pour toute la famille, un frigo mieux utilisé et une seule liste de courses. Madeleine vous aide à préparer la semaine, en respectant les goûts de chacun.</p>
-        <a class="button" href="telecharger.html">Tester Madeleine <span aria-hidden="true">→</span></a>
+        <div class="hero-actions"><a class="button" href="/telecharger.html">Essayer la bêta <span aria-hidden="true">→</span></a><a class="quiet-link" href="#comment-ca-marche">Comment ça marche ↓</a></div>
         <p class="small-note">Bêta sur Android · iPhone via TestFlight</p>
         <ol class="hero-flow" aria-label="Du choix des repas à la liste de courses"><li>Vos goûts</li><li>Vos menus</li><li>Vos courses</li></ol>
       </div>
@@ -52,7 +52,7 @@
         <p class="visual-caption">On s’occupe du plan.<br><strong>Vous gardez le plaisir de cuisiner.</strong></p>
       </div>
     </section>
-    <section class="benefits" aria-labelledby="benefits-title">
+    <section id="comment-ca-marche" class="benefits" aria-labelledby="benefits-title">
       <div class="section-heading" data-reveal><p class="eyebrow">Un peu d’organisation, beaucoup de plaisir.</p><h2 id="benefits-title">La semaine se prépare ensemble.</h2></div>
       <div class="benefit-grid">
         <article class="benefit" data-reveal><span class="number" aria-hidden="true">01</span><h3>Des menus à votre goût</h3><p>Les envies, le budget et le temps de cuisine de votre foyer réunis dans une semaine de repas que vous pouvez ajuster.</p></article>
@@ -60,8 +60,12 @@
         <article class="benefit" data-reveal><span class="number" aria-hidden="true">03</span><h3>Des courses plus simples</h3><p>Retrouvez les ingrédients à acheter dans une seule liste, organisée par rayon.</p></article>
       </div>
     </section>
+    <section class="home-guide" aria-labelledby="home-guide-title">
+      <div><p class="eyebrow">À lire, puis à essayer chez vous.</p><h2 id="home-guide-title">Tout le monde n’a pas envie du même dîner.</h2><p>Comment trouver une base commune, prévoir les soirs pressés et préparer une seule liste de courses ? Notre premier guide vous accompagne, avec une semaine d’exemple.</p><a class="feature-link" href="/guides/organiser-repas-famille-gouts-differents/">Organiser les repas de la famille <span aria-hidden="true">→</span></a><a class="quiet-link" href="/guides/">Voir les guides &amp; menus</a></div>
+      <div class="home-week" aria-label="Exemple d’organisation de trois dîners"><p class="mini-plan-label">Une semaine qui vous ressemble.</p><dl><div><dt>Lundi</dt><dd>Pâtes à la tomate<span>Les herbes et le fromage à part</span></dd></div><div><dt>Mardi</dt><dd>Semoule &amp; pois chiches<span>Une idée pour le soir pressé</span></dd></div><div><dt>Mercredi</dt><dd>Pommes de terre au four<span>Chacun choisit sa garniture</span></dd></div></dl><p class="small-note">Exemple illustratif à adapter à votre foyer.</p></div>
+    </section>
     <section class="beta-banner" aria-labelledby="beta-title" data-reveal><div><p class="eyebrow">C’est le début de l’aventure.</p><h2 id="beta-title">Et si vous nous aidiez à cuisiner la suite ?</h2><p>Essayez la bêta et racontez-nous ce qui vous plaît, ce qui manque et ce qui pourrait être plus simple.</p></div><a class="button" href="telecharger.html">Rejoindre les testeurs <span aria-hidden="true">→</span></a></section>
   </main>
-  <footer class="site-footer"><a href="mailto:paul@madeleine-de-gout.com">Une question ? Écrivez-nous</a><a href="confidentialite.html">Confidentialité</a><span>© 2026 Madeleine de Goût</span></footer>
+  <footer class="site-footer"><a href="/">L’application</a><a href="/guides/">Guides &amp; menus</a><a href="mailto:paul@madeleine-de-gout.com">Nous écrire</a><a href="/confidentialite.html">Confidentialité</a><span>© 2026 Madeleine de Goût</span></footer>
 </body>
 </html>
