@@ -6,10 +6,21 @@ from urllib.parse import unquote, urlsplit
 import xml.etree.ElementTree as ET
 import re
 import sys
+import json
+import hashlib
+import base64
 
 ROOT = Path(__file__).resolve().parent.parent
 ERRORS = []
-REMOTE_LINKS = {'apps.apple.com', 'testflight.apple.com', 'www.cnil.fr'}
+# Sources officielles relues pour les comparatifs, pas de domaine générique.
+REMOTE_LINKS = {
+    'apps.apple.com', 'testflight.apple.com', 'www.cnil.fr', 'jow.com',
+    'www.carrefour.fr', 'www.hellofresh.fr', 'www.quitoque.fr', 'lescommis.com',
+    'www.recettesetcabas.com', 'samsungfood.com', 'www.paprikaapp.com',
+    'paprikaapp.zendesk.com', 'www.plantoeat.com', 'www.anylist.com',
+    'www.getbring.com', 'www.marmiton.org', 'www.vorwerk.com',
+    'support-france.vorwerk.com', 'www.mealime.com',
+}
 ORIGIN = 'https://madeleine-de-gout.com'
 
 
@@ -45,6 +56,14 @@ class Page(HTMLParser):
         self.canonical = None
         self.language = None
         self.viewport = None
+        self.script_kind = None
+        self.script_content = []
+        self.jsonld = []
+        self.visible_text = []
+        self.tables = 0
+        self.table_captions = 0
+        self.table_headers = 0
+        self.og = {}
 
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
@@ -65,6 +84,15 @@ class Page(HTMLParser):
             self.description = a.get('content', '')
         if tag == 'meta' and a.get('name') == 'viewport':
             self.viewport = a.get('content', '')
+        if tag == 'meta' and a.get('property', '').startswith('og:'):
+            self.og[a['property']] = a.get('content', '')
+        if tag == 'table':
+            self.tables += 1
+        if tag == 'caption':
+            self.table_captions += 1
+        if tag == 'th':
+            self.table_headers += 1
+            check(a.get('scope') in {'col', 'row'}, where, 'portée d’en-tête de tableau absente')
         if tag == 'link' and a.get('rel') == 'canonical':
             check(self.canonical is None, where, 'URL canonique dupliquée')
             self.canonical = a.get('href')
@@ -79,8 +107,13 @@ class Page(HTMLParser):
         if tag == 'meta' and a.get('name') == 'referrer':
             self.remote_referrers = a.get('content') == 'no-referrer'
         if tag == 'script':
-            self.scripts.append(Path(urlsplit(a.get('src', '')).path).name)
-            check(bool(a.get('src')), where, 'script sans fichier source')
+            self.script_kind = a.get('type')
+            self.script_content = []
+            if self.script_kind != 'application/ld+json':
+                self.scripts.append(Path(urlsplit(a.get('src', '')).path).name)
+                check(bool(a.get('src')), where, 'script exécutable sans fichier source')
+            else:
+                check(not a.get('src'), where, 'JSON-LD externe interdit')
             self.script_open = True
         if tag in {'script', 'img', 'link'}:
             self.resource_seen = True
@@ -111,13 +144,20 @@ class Page(HTMLParser):
 
     def handle_endtag(self, tag):
         if tag == 'script':
+            if self.script_kind == 'application/ld+json':
+                self.jsonld.append(''.join(self.script_content))
             self.script_open = False
         if tag == 'title':
             self.in_title = False
 
     def handle_data(self, data):
         if self.script_open:
-            check(not data.strip(), self.path.name, 'script intégré au HTML interdit')
+            if self.script_kind == 'application/ld+json':
+                self.script_content.append(data)
+            else:
+                check(not data.strip(), self.path.name, 'script exécutable intégré au HTML interdit')
+        else:
+            self.visible_text.append(data)
         if self.in_title:
             self.title += data
 
@@ -141,13 +181,55 @@ class Page(HTMLParser):
             check((self.policy or {}).get(directive) == ["'self'"], self.path.name,
                   f'{directive} doit rester local')
         expected_scripts = {
-            'index.html': ['effects.js'],
+            'index.html': ['effects.js', 'tour.js'],
             'telecharger.html': ['download.js', 'effects.js'],
+            'comparatifs/index.html': ['comparisons.js'],
         }
         allowed = expected_scripts.get(relative, [])
         check(self.scripts == allowed, self.path.name, 'liste des scripts locaux inattendue')
-        expected = ["'self'"] if allowed else ["'none'"]
+        hashes = ["'sha256-" + base64.b64encode(hashlib.sha256(block.encode()).digest()).decode() + "'" for block in self.jsonld]
+        expected = (["'self'"] if allowed else []) + hashes
+        if not expected:
+            expected = ["'none'"]
         check((self.policy or {}).get('script-src') == expected, self.path.name, 'scripts trop permissifs')
+        check((self.policy or {}).get('script-src-attr') == ["'none'"], relative, 'gestionnaires inline interdits')
+        check((self.policy or {}).get('style-src-attr') == ["'none'"], relative, 'styles inline interdits')
+        for block in self.jsonld:
+            try:
+                data = json.loads(block)
+                check(data.get('@context') == 'https://schema.org', relative, 'contexte JSON-LD invalide')
+                graph = data.get('@graph', [])
+                check(bool(graph), relative, 'graphe JSON-LD vide')
+                visible = ' '.join(' '.join(self.visible_text).split())
+                for entity in graph:
+                    check(entity.get('@type') not in {'Review', 'AggregateRating'}, relative, 'avis ou note non justifiés')
+                    if entity.get('@type') == 'FAQPage':
+                        for question in entity.get('mainEntity', []):
+                            answer = question.get('acceptedAnswer', {}).get('text', '')
+                            check(bool(question.get('name')) and question['name'] in visible, relative, 'question structurée absente du texte')
+                            check(bool(answer) and answer in visible, relative, 'réponse structurée absente du texte')
+                    if entity.get('@type') == 'Article':
+                        check(entity.get('mainEntityOfPage') == self.canonical, relative, 'article structuré sans URL cohérente')
+                        for field in ['headline', 'datePublished', 'dateModified', 'author', 'publisher']:
+                            check(bool(entity.get(field)), relative, f'article structuré sans {field}')
+                    main_entity = entity.get('mainEntity', {})
+                    if entity.get('@type') == 'ItemList' or (isinstance(main_entity, dict) and main_entity.get('@type') == 'ItemList'):
+                        listing = entity if entity.get('@type') == 'ItemList' else main_entity
+                        entries = listing.get('itemListElement', [])
+                        check(listing.get('numberOfItems') == len(entries), relative, 'nombre de comparatifs incohérent')
+                        for entry in entries:
+                            target = local_target(self.path, urlsplit(entry.get('url', '')).path)
+                            check(target.is_file(), relative, 'comparatif structuré sans page réelle')
+            except (ValueError, TypeError, AttributeError) as error:
+                check(False, relative, 'JSON-LD invalide : ' + str(error))
+        if relative.startswith('comparatifs/') and '/madeleine-vs-' in '/' + relative:
+            check(self.tables == self.table_captions == 1 and self.table_headers >= 3,
+                  relative, 'tableau comparatif accessible absent')
+            check(len(self.jsonld) == 1, relative, 'données structurées du comparatif absentes')
+            for required in ['reponse', 'tableau', 'choisir', 'cas-pratique', 'questions', 'sources']:
+                check(required in self.ids, relative, f'section du comparatif absente : {required}')
+        check(self.og.get('og:url') == self.canonical, relative, 'URL de partage incohérente')
+        check(bool(self.og.get('og:title')) and bool(self.og.get('og:description')), relative, 'aperçu de partage incomplet')
         for where, target, fragment in self.fragments:
             check(target in PAGES and fragment in PAGES[target].ids, where,
                   'ancre absente : ' + fragment)
@@ -164,6 +246,8 @@ for page in PAGES.values():
     page.verify()
 titles = [page.title.strip() for page in PAGES.values()]
 check(len(titles) == len(set(titles)), 'titres', 'plusieurs pages ont le même titre')
+descriptions = [page.description for page in PAGES.values()]
+check(len(descriptions) == len(set(descriptions)), 'descriptions', 'plusieurs pages ont la même description')
 try:
     sitemap = ET.parse(ROOT / 'sitemap.xml')
     locations = [node.text for node in sitemap.findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}loc')]
@@ -179,8 +263,9 @@ try:
           'robots.txt', 'exploration du site bloquée')
 except OSError as error:
     check(False, 'robots.txt', str(error))
-css = (ROOT / 'style.css').read_text()
-check(not re.search(r'@import|url\(\s*[\'"]?(?:https?:|//|data:)', css, re.I), 'style.css', 'ressource CSS externe interdite')
+for path in ROOT.glob('*.css'):
+    css = path.read_text()
+    check(not re.search(r'@import|url\(\s*[\'"]?(?:https?:|//|data:)', css, re.I), path.name, 'ressource CSS externe interdite')
 check((ROOT / '.nojekyll').exists(), '.nojekyll', 'publication statique non déclarée')
 check((ROOT / 'CNAME').read_text().strip() == 'madeleine-de-gout.com', 'CNAME', 'domaine modifié')
 check((ROOT / 'fonts/OFL.txt').exists(), 'police', 'licence absente')

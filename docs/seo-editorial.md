@@ -8,8 +8,8 @@
 - `/telecharger.html` : installer la bêta Android ou rejoindre TestFlight sur iPhone.
 - `/confidentialite.html` : consulter la politique de confidentialité existante.
 
-La navigation garde deux entrées, « L’application » et « Guides & menus »,
-avec un bouton distinct « Essayer la bêta ». Sur mobile, les deux entrées restent
+Depuis le 20 novembre, la navigation présente trois entrées, « L’application », « Guides & menus » et « Comparatifs »,
+avec un bouton distinct « Essayer la bêta ». Sur mobile, les trois entrées restent
 visibles sur une seconde ligne. Les guides utilisent un fil d’Ariane, un sommaire
 et une largeur de lecture limitée. Aucun menu masqué, filtre vide ou lien vers un
 article à venir n’est nécessaire pour démarrer.
@@ -76,3 +76,44 @@ en place ; aucun outil de mesure tiers n’est ajouté par cette version.
 - https://developers.google.com/search/docs/fundamentals/seo-starter-guide
 - https://developers.google.com/search/docs/fundamentals/creating-helpful-content
 - https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview
+
+
+## Comparatifs, SEO et moteurs de réponse — 20 novembre 2026
+
+L’architecture ajoute `/comparatifs/`, treize comparaisons distinctes sous
+`/comparatifs/madeleine-vs-<service>/` et `/comparatifs/methode/`. L’accueil,
+la navigation, le pied de page et les guides existants pointent vers cette rubrique.
+Chaque comparatif renvoie aussi à trois autres services et au guide d’organisation.
+Les pages ne sont pas des variantes de mots-clés : leurs angles, tableaux, cas
+pratiques et questions correspondent au fonctionnement du service concerné.
+
+Les faits se trouvent dans `scripts/comparisons.json`, avec des sources officielles
+et une date de vérification volontairement fixe. Les conclusions sur le choix sont
+présentées comme une interprétation. Aucun test de terrain, avis utilisateur, note,
+pourcentage d’économies ou absence de fonction n’est inventé. Les informations
+non documentées restent incertaines. Les abonnements et les aliments livrés ne
+sont pas assimilés dans un classement de prix.
+
+Pour la compréhension par les moteurs de réponse : réponses synthétiques visibles,
+entités nommées sans ambiguïté, tableaux sémantiques avec titres et en-têtes,
+questions et réponses complètes, auteur identifié, sources et dates. Les données
+JSON-LD décrivent ces mêmes contenus ; la FAQ ne promet pas un résultat enrichi
+Google, dont l’éligibilité est limitée. Pas de balisage Review ou de note artificielle.
+
+Google indique que ses fonctions d’IA reposent sur les fondamentaux SEO, sans
+fichier IA ni schéma spécial obligatoire. Aucun fichier `llms.txt` n’est donc ajouté
+comme prétendu levier garanti. Ni les balises ni le contenu ne garantissent une
+citation, un classement ou une indexation.
+
+Après publication, soumettre le sitemap actualisé dans Search Console puis
+inspecter l’accueil, la rubrique, Jow et deux comparatifs de catégories différentes.
+Vérifier les données structurées avec le test de résultats enrichis et le validateur
+Schema.org ; les contrôles locaux vérifient la structure, pas l’éligibilité Google.
+Les dates de modification ne doivent changer qu’après une modification réelle.
+
+Références officielles :
+
+- https://developers.google.com/search/docs/appearance/ai-features
+- https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data
+- https://developers.google.com/search/docs/appearance/structured-data/faqpage
+- https://developers.google.com/search/docs/fundamentals/creating-helpful-content

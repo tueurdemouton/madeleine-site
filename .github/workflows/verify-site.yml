@@ -11,5 +11,10 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+      - name: Vérifier la reproductibilité des comparatifs et du sitemap
+        run: |
+          python3 scripts/build_comparisons.py
+          python3 scripts/build_sitemap.py
+          git diff --exit-code -- comparatifs sitemap.xml
       - name: Vérifier les protections et les liens locaux
         run: python3 scripts/check_site.py

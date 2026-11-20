@@ -33,12 +33,52 @@ python3 scripts/check_site.py
 
 Le contrôle parcourt aussi les sous-dossiers, vérifie les URL canoniques, les
 ancres entre pages et la cohérence du sitemap. Le guide utilise les microdonnées
-Article et BreadcrumbList, sans script intégré au HTML ni dépendance tierce.
+Article et BreadcrumbList, sans script exécutable intégré au HTML ni dépendance tierce. Les nouveaux comparatifs ajoutent du JSON-LD protégé par empreinte CSP.
 Les guides et leur sommaire fonctionnent sans JavaScript. Le planning est fourni
 en PDF A4 d'une page, téléchargeable et imprimable. Après une modification des
 sept jours de l'exemple, le régénérer sur macOS avec
 `python3 scripts/build_planning_pdf.py` (Swift/Xcode requis uniquement pour
 la génération, aucune dépendance à charger chez les visiteurs).
+
+
+## Design et comparatifs — 20 novembre 2026
+
+L’accueil présente les dîners du foyer avec des captures réelles de la bêta,
+un aperçu à onglets utilisable au clavier et des visuels illustratifs du catalogue.
+`design.css` porte la nouvelle direction visuelle et complète les styles des guides
+et de l’installation. Tous les textes, tableaux et liens sont présents dans le HTML.
+Sans JavaScript, les trois captures restent visibles et les 13 comparatifs accessibles.
+
+`/comparatifs/` regroupe les pages face à Jow, HelloFresh, Quitoque, Les Commis,
+Recettes & Cabas, Samsung Food, Paprika, Plan to Eat, AnyList, Bring!, Marmiton,
+Cookidoo et Mealime. Chaque page comprend une réponse rapide, un tableau sourcé,
+des critères de choix, un cas à essayer, une FAQ et les sources officielles.
+`/comparatifs/methode/` expose la méthode documentaire et le conflit d’intérêts.
+L’arrêt annoncé de Mealime et l’offre actuelle de Paprika sont traités explicitement.
+
+Les faits éditoriaux sont dans `scripts/comparisons.json`. Pour les mettre à jour :
+
+```sh
+python3 scripts/build_comparisons.py
+python3 scripts/build_sitemap.py
+python3 scripts/check_site.py
+```
+
+Ne modifier la date de vérification dans le générateur qu’après relecture effective
+des sources. Les pages HTML générées sont versionnées pour GitHub Pages. La CI
+vérifie que leur régénération ne produit pas de différence. Aucun outil de build
+n’est requis sur le serveur ni dans le navigateur.
+
+Les nouvelles pages utilisent JSON-LD (`Article`, `BreadcrumbList`, `FAQPage`,
+`CollectionPage` et `ItemList` selon leur contenu). L’accueil décrit l’organisation,
+le site et les questions visibles. Chaque bloc est autorisé par son empreinte SHA-256
+dans la CSP : aucun `unsafe-inline` n’est introduit. Le vérificateur contrôle le JSON,
+les empreintes, les FAQ visibles, les liens de l’index et les tableaux accessibles.
+Les liens externes sont limités aux sources officielles relues.
+
+Les fonctions interactives sont locales : `tour.js` gère les onglets avec les touches
+fléchées, Début et Fin ; `comparisons.js` filtre les cartes et annonce le nombre de
+résultats. Aucune connexion, mesure tierce ou collecte de recherche n’est ajoutée.
 
 ## Installation de la bêta
 
@@ -63,7 +103,7 @@ clé App Store Connect ne doit figurer dans ce dépôt public. Mettre les étape
   réseau depuis le code des pages, aucun formulaire, plugin, base URL ou contenu
   embarqué ; ressources visuelles, styles et police servis localement.
 - Aucun JavaScript sur la politique de confidentialité. L'accueil utilise
-  `effects.js` ; le téléchargement utilise `download.js` et `effects.js`, sans
+  `effects.js` et `tour.js` ; le téléchargement utilise `download.js` et `effects.js`, sans
   code intégré au HTML, `eval`, insertion HTML ou destination calculée depuis
   les paramètres de l'URL.
 - Aucun framework, paquet npm, outil de mesure ou script tiers chargé chez les
