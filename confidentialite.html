@@ -28,7 +28,7 @@
   <header class="site-header"><a class="brand" href="/" aria-label="Madeleine de Goût, accueil"><img src="/images/logo.webp" alt="Madeleine de Goût" width="738" height="160"></a><nav class="site-nav" aria-label="Navigation principale"><a href="/">L’application</a><a href="/guides/">Guides &amp; menus</a><a href="/comparatifs/">Comparatifs</a></nav><a class="button button-small header-cta" href="/telecharger.html">Essayer la bêta</a></header>
   <main id="contenu" class="page">
     <h1>Politique de confidentialité</h1>
-    <p class="maj">Dernière mise à jour : 21 novembre 2026 — application en bêta.</p>
+    <p class="maj">Dernière mise à jour : 23 novembre 2026 — application en bêta.</p>
 
     <section>
       <h2>Qui est responsable de tes données ?</h2>
@@ -56,6 +56,11 @@
             <td>Faire fonctionner l'application et mieux choisir les menus suivants.</td></tr>
         <tr><td>Les photos que tu envoies (frigo, ticket de caisse, plat cuisiné, avatar)</td>
             <td>Lire le contenu d'un frigo ou d'un ticket pour te le proposer à valider ; afficher tes photos dans l'application.</td></tr>
+        <tr><td>Ce que tu écris ou dis à l'assistant « Demande à Madeleine », et la liste de ce que contient ton frigo
+                au moment où tu lui parles</td>
+            <td>Te trouver des recettes de notre catalogue et te proposer de mettre ton frigo à jour : rien n'est changé
+                sans ton « Oui ». Quand tu utilises le micro, ta voix est transformée en texte par la dictée de ton
+                téléphone ; aucun son n'est envoyé à notre serveur ni enregistré.</td></tr>
         <tr><td>Le jeton de notification de ton téléphone, la langue et le pays du téléphone</td>
             <td>T'envoyer les rappels que tu as activés, et adapter la langue et la cuisine proposée.</td></tr>
         <tr><td>La position de ton téléphone, seulement quand tu cherches les magasins proches (page « Itinéraire »)
@@ -106,8 +111,13 @@
       <p>Uniquement avec les prestataires nécessaires au fonctionnement de l'application, qui agissent pour notre compte :</p>
       <ul>
         <li><strong>Hetzner</strong> (Allemagne) : hébergement du serveur, de la base de données et des photos, dans l'Union européenne.</li>
-        <li><strong>Anthropic</strong> (États-Unis) : lecture automatique d'une photo de frigo ou de ticket, seulement quand tu la demandes.
-            La photo est transmise pour cette lecture ; nous ne conservons de notre côté aucune copie de l'image dans ce journal.</li>
+        <li><strong>Anthropic</strong> (États-Unis) : lecture automatique d'une photo de frigo ou de ticket, et réponses de
+            l'assistant « Demande à Madeleine », seulement quand tu les demandes. Sont transmis pour cela la photo, ou tes
+            messages à l'assistant et la liste de ce que contient ton frigo ; nous ne conservons de notre côté aucune copie
+            de l'image dans ce journal.</li>
+        <li><strong>Google (sur Android) et Apple (sur iPhone)</strong> : la dictée, seulement si tu touches le micro de
+            l'assistant. Ta voix est traitée par la reconnaissance vocale de ton téléphone (sur le téléphone lui-même quand
+            il sait le faire, sinon par Google ou Apple selon leurs propres règles) ; seul le texte reconnu nous parvient.</li>
         <li><strong>Resend</strong> (États-Unis) : envoi des emails du compte.</li>
         <li><strong>Google (Firebase Cloud Messaging) et Apple</strong> : envoi des notifications sur ton téléphone.</li>
         <li><strong>Google et Apple</strong> : la connexion, si tu choisis « Continuer avec Google » ou « Continuer avec Apple ».</li>
@@ -126,6 +136,8 @@
       <h2>Combien de temps ?</h2>
       <ul>
         <li>Tant que ton compte existe.</li>
+        <li>Pour chaque message à l'assistant, nous gardons dans notre journal ton dernier message et la réponse
+            (sans aucun son), tant que ton compte existe ; ils sont effacés avec ton compte.</li>
         <li>Quand tu supprimes ton compte, toutes tes données sont effacées immédiatement, photos comprises.
             Elles disparaissent ensuite des sauvegardes au fur et à mesure de leur remplacement.</li>
         <li>Un compte inactif depuis 24 mois reçoit un email de prévenance ; sans reconnexion, il est entièrement effacé
